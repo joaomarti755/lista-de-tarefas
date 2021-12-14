@@ -6,65 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="style.css">
     <title>Lista</title>
-
-
-    <style>
-        * {
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-image: linear-gradient(rgb(0, 68, 255), rgb(0, 238, 255), rgb(255, 255, 255));
-            text-align: center;
-            height: 100vh;
-            display: grid;
-            place-items: center;
-        }
-
-        .boxlist {
-            background-color: rgb(255, 255, 255);
-            border: none;
-            height: 500px;
-            width: 400px;
-            border-radius: 10px;
-            text-align: left;
-            box-shadow: 10px 5px 5px black;
-            overflow-y: scroll;
-        }
-
-        .boxlist .done {
-            text-decoration: line-through;
-            color: green;
-        }
-
-        .tdiv {
-            width: 400px;
-            box-shadow: 10px 5px 5px black;
-        }
-
-        .boxCentral {
-            background-color: rgb(83, 83, 83);
-            width: 650px;
-            height: 650px;
-            border-radius: 15px;
-            place-items: center;
-            display: grid;
-            box-shadow: 10px 5px 5px black;
-        }
-
-        button {
-            border: none;
-            background: none;
-        }
-
-        img {
-            width: 20px;
-            height: 20px;
-        }
-    </style>
 </head>
 
 <body>
@@ -81,79 +24,7 @@
             <button class="btn btn-outline-secondary" style="background-color: rgb(75, 75, 75);" onclick="add()">Add</button>
         </div>
     </div>
-    <script>
-        const tarefas = [
-            { title: "Estudar JS", done: false },
-            { title: "Estudar HTML", done: true },
-        ]
-
-        function add() {
-            const input = document.querySelector("#texto")
-            tarefas.push({title:input.value, done: false})
-            input.value = ""
-            render()
-        }
-
-        function render() {
-            const ul = document.querySelector("ul")
-            ul.innerHTML = null
-            tarefas.forEach(function (tarefa) {
-                // checkbox
-                const check = document.createElement("input")
-                check.type = "checkbox"
-                check.checked = tarefa.done
-                check.addEventListener("click", function () {
-                    tarefa.done = !tarefa.done
-                    render()
-                })
-
-                // title
-                const span = document.createElement("span")
-                span.innerText = tarefa.title
-
-                // input para edição
-                const input = document.createElement("input")
-                input.value = tarefa.title
-                input.addEventListener("blur", function (event) {
-                    tarefa.title = input.value
-                    render()
-                })
-
-                // button deletar
-                const button = document.createElement("button")
-                button.innerHTML = "<img src=img/lixo.png>"
-                button.addEventListener("click", function () {
-                    const index = tarefas.indexOf(tarefa)
-                    tarefas.splice(index, 1)
-                    render()
-                })
-
-                // button editar
-                const buttonEdit = document.createElement("button")
-                buttonEdit.innerHTML = "<img src=img/84380.png>"
-                buttonEdit.addEventListener("click", function () {
-                    const index = tarefas.indexOf(tarefa)
-                    console.log(index)
-                })
-
-                // li
-                const li = document.createElement("li")
-                li.appendChild(check)
-                li.appendChild(input)
-                li.appendChild(span)
-                li.appendChild(button)
-                li.appendChild(buttonEdit)
-                if (tarefa.done) {
-                    li.classList.add("done")
-                }
-
-                // ul
-                ul.appendChild(li)
-            })
-        }
-
-        render()
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
